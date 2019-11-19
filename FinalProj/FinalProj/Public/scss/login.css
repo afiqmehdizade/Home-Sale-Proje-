@@ -1,0 +1,114 @@
+#sign-up {
+    position: relative;
+}
+
+    #sign-up .sign-up {
+        position: absolute;
+        width: 500px;
+        top: 30%;
+        left: 32%;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+        #sign-up .sign-up .submit {
+            position: relative;
+            color: white;
+            font-size: 18px;
+        }
+
+            #sign-up .sign-up .submit p {
+                position: absolute;
+                right: 0;
+            }
+
+                #sign-up .sign-up .submit p a {
+                    color: red;
+                    font-size: 19px;
+                    text-decoration: none;
+                }
+
+            #sign-up .sign-up .submit input {
+                position: absolute;
+                left: 0;
+            }
+
+        #sign-up .sign-up h3 {
+            color: white;
+        }
+
+        #sign-up .sign-up label {
+            font-size: 25px;
+            color: white;
+            font-weight: 800;
+        }
+
+    #sign-up img {
+        width: 100%;
+        height: 100vh;
+    }
+/*# sourceMappingURL=login.css.map */
+.field-validation-error {
+    font-size: 15px;
+    font-weight: bold;
+    color: red;
+}
+
+
+
+@media screen and (min-width: 320px) and (max-width: 1366px) {
+    #sign-up .sign-up {
+        position: absolute;
+        width: 310px;
+        top: 30%;
+        left: 12%!important;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    #sign-up p {
+        font-size: 14px;
+    }
+
+    #sign-up .sign-up label {
+        color: black;
+    }
+
+    #sign-up .sign-up h3 {
+        color: black;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 568px) {
+
+    #sign-up .sign-up {
+        position: absolute;
+        width: 310px;
+        top: 30%;
+        left: 2%!important;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    #sign-up p {
+        font-size: 14px;
+    }
+
+    #sign-up .sign-up label {
+        color: red;
+    }
+
+    #sign-up .sign-up h3 {
+        color: red;
+    }
+   
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px){
+    #sign-up .sign-up {
+        
+        top: 37%!important;
+        left: 30% !important;
+       
+    }
+}

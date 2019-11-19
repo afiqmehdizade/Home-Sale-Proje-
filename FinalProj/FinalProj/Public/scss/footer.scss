@@ -1,0 +1,28 @@
+#social{
+    background-color: #203e4d;
+    color: aliceblue;
+    .uls{
+        justify-content: space-around;
+        padding-top: 15px;
+    }
+    ul{
+        a{
+            text-decoration: none;
+            color: white;
+        }
+
+        li{
+            list-style: none;
+        }
+    }
+    .socialul{
+        display: flex;
+        justify-content: center;
+        li{
+            margin: 0 10px;
+            font-size: 30px;
+            
+        }
+
+    }
+}

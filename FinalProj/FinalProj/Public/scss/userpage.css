@@ -1,0 +1,21 @@
+#userpage .userpage {
+  margin: 20px 0px;
+}
+
+#userpage .userpage .foritem {
+  margin: 5px 0px;
+}
+
+#userul {
+  margin-right: 60px;
+}
+
+#userul a {
+  text-decoration: none;
+  color: black !important;
+}
+
+.blockaccount {
+  visibility: hidden;
+}
+/*# sourceMappingURL=userpage.css.map */

@@ -1,0 +1,272 @@
+header {
+    width: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    position: relative;
+}
+
+    header img {
+        width: 100%;
+    }
+
+    header #secnavbar {
+        width: 100%;
+    }
+
+        header #secnavbar ul {
+            z-index: 2;
+        }
+
+            header #secnavbar ul li {
+                list-style-type: none;
+            }
+
+        header #secnavbar a {
+            color: white;
+            padding: 5px 8px;
+        }
+
+        header #secnavbar .navbarlist .navbarli {
+            cursor: pointer;
+            position: relative;
+        }
+
+            header #secnavbar .navbarlist .navbarli:hover {
+                background-color: #20c063;
+                border-radius: 5px;
+            }
+
+                header #secnavbar .navbarlist .navbarli:hover .dropdownul {
+                    display: block;
+                }
+
+            header #secnavbar .navbarlist .navbarli .dropdownul {
+                border-radius: 5px;
+                position: absolute;
+                top: 38px;
+                left: 0;
+                padding: 0px;
+                background-color: white;
+                width: 150px;
+                -webkit-padding-start: 0px !important;
+                padding-inline-start: 0px !important;
+                display: none;
+            }
+
+                header #secnavbar .navbarlist .navbarli .dropdownul .dropdownli {
+                    width: 100%;
+                    padding: 5px 6px;
+                    -webkit-transition: all 0.2s linear;
+                    transition: all 0.2s linear;
+                }
+
+                    header #secnavbar .navbarlist .navbarli .dropdownul .dropdownli:hover {
+                        background-color: #d1cece;
+                        border-radius: 5px;
+                    }
+
+                    header #secnavbar .navbarlist .navbarli .dropdownul .dropdownli .dropdowna {
+                        color: black;
+                        padding: 10px;
+                    }
+
+                        header #secnavbar .navbarlist .navbarli .dropdownul .dropdownli .dropdowna:hover {
+                            text-decoration: none;
+                        }
+
+        header #secnavbar .form-inline a {
+            text-decoration: none;
+        }
+
+            header #secnavbar .form-inline a:hover {
+                background-color: #20c063;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+    header .search {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        text-align: center;
+        position: absolute;
+        left: 30%;
+        top: 25%;
+        width: 40%;
+        margin: auto;
+    }
+
+        header .search h2 {
+            font-size: 38px;
+            color: white;
+            width: 50%;
+            margin: auto;
+            font-weight: bold;
+        }
+
+        header .search .buttons {
+            padding-top: 30px;
+            width: 50%;
+            margin: auto;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            text-align: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+        }
+
+            header .search .buttons .firstbutton {
+                border-radius: 5px 0px 0px 0px;
+            }
+
+            header .search .buttons .thirdbutton {
+                border-radius: 0px 5px 0px 0px;
+            }
+
+            header .search .buttons .active {
+                background-color: #20c063;
+            }
+
+            header .search .buttons button {
+                background-color: rgba(0, 0, 0, 0.452);
+                border: none;
+                height: 50px;
+                -webkit-transition: all 0.2s linear;
+                transition: all 0.2s linear;
+            }
+
+                header .search .buttons button:hover {
+                    background-color: #20c063;
+                }
+
+                header .search .buttons button a {
+                    padding: 20px;
+                    text-decoration: none;
+                    color: white;
+                    font-size: 17px;
+                }
+
+                    header .search .buttons button a:hover {
+                        text-decoration: none;
+                    }
+
+        header .search .inputsearch {
+            width: 100%;
+            position: relative;
+            margin: auto;
+        }
+
+            header .search .inputsearch .iconsearch {
+                text-align: center;
+                position: absolute;
+                bottom: 5px;
+                right: 10px;
+                color: white;
+                padding: 15px;
+                background-color: #20c063;
+                -webkit-transition: all 0.3s linear;
+                transition: all 0.3s linear;
+            }
+
+                header .search .inputsearch .iconsearch:hover {
+                    cursor: pointer;
+                    background-color: #20c063c2;
+                }
+
+            header .search .inputsearch .searchinput {
+                width: 100%;
+                margin: auto;
+                height: 60px;
+                border-radius: 5px;
+                outline: none;
+                padding: 10px;
+                border: none;
+            }
+
+            header .search .inputsearch .srcresult {
+                right: 15%;
+                position: absolute;
+                width: 80%;
+                margin: auto;
+                height: 200px;
+                background-color: white;
+                overflow-y: scroll;
+            }
+
+                header .search .inputsearch .srcresult table {
+                    width: 100%;
+                }
+
+                    header .search .inputsearch .srcresult table td {
+                        font-size: 30px;
+                    }
+
+        header .search .searchinput {
+            color: teal;
+            font-size:17px;
+        }
+
+        header .search .searchprice {
+            padding: 20px 0;
+        }
+
+            header .search .searchprice input {
+                display: inline;
+                width: 150px;
+            }
+
+                header .search .searchprice input[type=number]::-webkit-inner-spin-button,
+                header .search .searchprice input[type=number]::-webkit-outer-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+/*# sourceMappingURL=header.css.map */
+@media screen and (min-width: 320px) and (max-width: 1366px) {
+    img {
+        width: 100%;
+        height: 252px;
+    }
+
+    .search {
+        left: 10% !important;
+        top: 14% !important;
+        width: 83% !important;
+    }
+
+        .search h2 {
+            display: none;
+        }
+
+        .search .inputsearch {
+            margin-top: 2% !important;
+        }
+
+            .search .inputsearch .searchinput {
+                height: 40px !important;
+            }
+
+            .search .inputsearch .iconsearch {
+                padding: 6px !important;
+            }
+
+        .search .search .buttons button a {
+            padding: 12px;
+        }
+}
+@media screen and (min-width: 320px) and (max-width: 568px) {
+
+    .search {
+       
+        top: 0% !important;
+      
+    }
+}

@@ -1,0 +1,153 @@
+﻿@model IEnumerable<FinalProj.Models.Message>
+@{
+    ViewBag.Title = "Allmessage";
+    Layout = "~/Areas/Admin/Views/Shared/_LayouteAdmin.cshtml";
+}
+
+
+<table class="table table-bordered table-striped ">
+    <thead class="bg-info">
+        <tr>
+            <th style="color:black;vertical-align:middle;text-align:center">@Html.DisplayNameFor(m => m.Name)</th>
+            <th style="color:black;vertical-align:middle;text-align:center">@Html.DisplayNameFor(m => m.Email)</th>
+            <th style="color:black;vertical-align:middle;text-align:center">@Html.DisplayNameFor(m => m.Title)</th>
+            <th style="color:black;vertical-align:middle;text-align:center">@Html.DisplayNameFor(m => m.Content)</th>
+            <th style="color:black;vertical-align:middle;text-align:center">@Html.DisplayNameFor(m => m.CreatedAt)</th>
+            <th style="color:black;vertical-align:middle;text-align:center">Əməliyyat</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="color:black;vertical-align:middle;text-align:center">@item.Name </td>
+                <td style="color:black;vertical-align:middle;text-align:center">@item.Email</td>
+                <td style="color:black;vertical-align:middle;text-align:center">@item.Title</td>
+                <td style="color:black;vertical-align:middle;text-align:center">@item.Content</td>
+                <td style="color:black;vertical-align:middle;text-align:center">@item.CreatedAt</td>
+                <td style="color:black;vertical-align:middle;text-align:center">
+                    @if (item.isRead == false)
+                    {
+                        <a  data-toggle="modal" data-target="#exampleModalCenter2" data-id="@item.Id" data-username="@item.Name" id="advsee" class="btn btn-success">
+                            <i class="fas fa-check"></i>
+                        </a>
+                    }
+                    <a id="loopid" data-toggle="modal" data-target="#exampleModalCenter" data-id="@item.Id" data-username="@item.Name" title="Sil" class="btn btn-danger">
+                        <i class="fas fa-trash"></i> Sil
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">  <span id="cty" style="color:red"></span> <span id="formsg">adlı istifadəçinin mesajını silmək istəyirsiniz?</span> </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                "Bu mesajı silsəniz bir daha bərpa edə bilməyəcəksiniz"
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Imtina</button>
+                <button type="button" id="deladv1" data-id="" class="btn btn-success">Sil</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">  <span id="cty2" style="color:red"></span> adlı istifadəçinin mesajını qəbul edirsiniz ?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                "Mesajı qəbul etdikdə mesaj oxunmamışlar cədvəlindən çıxarılır"
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Imtina</button>
+                <button type="button" id="deladv2" data-id="" class="btn btn-success">Qəbul</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(function () {
+            $(document).on("click", "#loopid", function () {
+                var dataid = $(this).data("id")
+                var datausername = $(this).data("username")
+                if (dataid || datausername) {
+                    $("#deladv1").attr("data-id", dataid)
+                    $("#cty").html(datausername)}
+
+            })
+            $(document).on("click", "#deladv1", function () {
+                var delid = ($(this).attr("data-id"))
+                if (delid) {
+                    $.ajax({
+                        url: "/Admin/AJAX/Messagedelete",
+                        data: { deletemsg: delid },
+                        type: "GET",
+                        success: function (res) {
+                            console.log(res)
+                            {
+                                swal("Uğurlu", "Mesaj Uğurla silindi", "success")
+                                    .then(willRedirect => {
+                                        location.reload();
+                                        //if (willRedirect) {
+                                        //    window.location.href = res.data;
+                                        //}
+                                    })
+                            }
+                        }
+                    })
+                }
+            })
+            $(document).on("click", "#advsee", function () {
+                var dataid = $(this).attr("data-id")
+                var datausername = $(this).attr("data-username")
+                if (dataid || datausername) {
+                    $("#deladv2").attr("data-id", dataid)
+                    $("#cty2").html(datausername)
+                }
+            })
+            $(document).on("click", "#deladv2", function () {
+                var delid = ($(this).attr("data-id"))
+                if (delid) {
+                    $.ajax({
+                        url: "/Admin/AJAX/Messageread",
+                        data: { readmsg: delid },
+                        type: "GET",
+                        success: function (res) {
+                            console.log(res)
+                            {
+                                swal("Uğurlu", "Mesaj Qəbul Edildi", "success")
+                                    .then(willRedirect => {
+                                        location.reload();
+                                        //if (willRedirect) {
+                                        //    window.location.href = res.data;
+                                        //}
+                                    })
+                            }
+                        }
+                    })
+                }
+            })
+        })
+
+
+    </script>
+   
+}

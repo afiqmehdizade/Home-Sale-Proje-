@@ -1,0 +1,92 @@
+﻿@model List<FinalProj.Models.Advert>
+
+@{
+    ViewBag.Title = "Rent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="userpage">
+    <div class="userpage">
+        <div class="container">
+            <div id="rentforappend" class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="foritem col-md-4">
+                        <div class="card item">
+                            <a href="@Url.Action("Detail","Advert",new { id = item.Id })">
+                                <div class="card">
+                                    <div class="forimage">
+                                        <img src="~/Images/@item.Image" class="card-img-top"
+                                             alt="...">
+                                    </div>
+                                    @{
+                                        if (item.IsNew == true)
+                                        {
+                                            <div class="new">
+                                                <h4>Yeni</h4>
+                                            </div>
+                                        }
+                                        if (item.IsVip)
+                                        {
+                                            <div class="vip">
+                                                <span><i class="fas fa-crown"></i></span>
+                                            </div>
+                                        }
+                                    }
+                                    <div class="card-body">
+                                        <div class="liked">
+                                            <span><i data-id="@item.Id" class="far fa-heart"></i></span>
+                                        </div>
+                                        <h5 class="card-title">₼ @item.Price</h5>
+                                        <div class="icons">
+                                            <i class="fas fa-bed"></i> <span>@item.BedRoom y.o</span>
+                                            <i class="fas fa-bath"></i> <span>@item.BathRoom h.o</span>
+                                            <i class="fas fa-ruler-horizontal"></i> <span>@item.RoomArea m<sup>2</sup></span>
+                                        </div>
+                                        <p>@item.Address</p>
+                                        <p>@item.City.CityName</p>
+                                        <p class="text-warning text-center bg-info">@item.RentType.SaleType</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+        @{
+            if (ViewBag.TotalRentCount > 6)
+            {
+                <input type="button" style="display:block;margin:20px auto;cursor:pointer;" id="loadmore" class="btn btn-success " value="Daha Çox" />
+            }
+
+        }
+    </div>
+</section>
+@section scripts{
+    <script>
+        $(function () {
+            var pagedata = 0;
+            var totalcount = @ViewBag.TotalRentCount;
+            $(document).on("click", "#loadmore", function () {
+                pagedata += 3;
+
+                $.ajax({
+                    url: "/AJAX/LoadRentMore",
+                    type: "GET",
+                    data: { page: pagedata },
+                    success: function (res) {
+                        $("#rentforappend").append(res)
+                        if (pagedata + 1 >= totalcount) {
+                            $("#loadmore").remove();
+                        }
+
+                    }
+                })
+            })
+
+        })
+    </script>
+
+}

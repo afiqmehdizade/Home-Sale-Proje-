@@ -1,0 +1,52 @@
+﻿@model IEnumerable<FinalProj.Models.Message>
+<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+    <i class="fa fa-envelope-o"></i>
+    <span class="badge bg-important">@Model.Count()</span>
+</a>
+<ul class="dropdown-menu extended inbox">
+    <li>
+        <p class="red">Oxunmamış @Model.Count() Mesaj Var</p>
+    </li>
+    @foreach (var item in Model)
+    {
+        <li>
+            <a href="#">
+                <span class="photo"><img alt="avatar" src="~/Areas/Admin/Public/images/mail.png"></span>
+                <span class="subject">
+                    <span class="from">@item.Name</span>
+
+                    @if (item.CreatedAt.Date == DateTime.Now.Date)
+                    {
+                        int messagetime = 0;
+
+                        if (DateTime.Now.Hour - item.CreatedAt.Hour == 0)
+                        {
+                            messagetime = DateTime.Now.Minute - item.CreatedAt.Minute;
+                            <span class="time"> @messagetime  dəqiqə əvvəl</span>
+                        }
+                        else
+                        {
+
+                            messagetime = DateTime.Now.Hour - item.CreatedAt.Hour;
+                            <span class="time"> @messagetime  saat əvvəl</span>
+                        }
+                    }
+                    else
+                    {
+                        int messageday = DateTime.Now.Day - item.CreatedAt.Day;
+                        <span class="time"> @messageday  gün əvvəl</span>
+
+                    }
+                </span>
+                <span class="message">
+                    @item.Title
+                </span>
+            </a>
+        </li>
+
+    }
+    <li>
+        <a href="/Admin/Messages/Unread">Bütün Mesajları Gör</a>
+    </li>
+
+</ul>

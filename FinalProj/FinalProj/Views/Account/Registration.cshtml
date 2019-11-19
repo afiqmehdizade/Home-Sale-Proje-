@@ -1,0 +1,76 @@
+﻿@model FinalProj.Models.User
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
+    <link rel="stylesheet" href="~/Public/scss/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <section id="registration">
+        <div class="forimage">
+            <img src="~/Public/images/white-black_06.jpg" alt="">
+        </div>
+
+        <div class="forform col-md-12 col-lg-6 offset-lg-3">
+            <div class="container">
+                <form method="post">
+                    @Html.AntiForgeryToken()
+                    <div class="forms">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Firstname, new { @class = "text-white" })
+                            @Html.TextBoxFor(m => m.Firstname, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Firstname, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Lastname, new { @class = "text-white" })
+                            @Html.TextBoxFor(m => m.Lastname, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Lastname, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Email, new { @class = "text-white" })
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Email, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Phone, new { @class = "text-white" })
+                            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Phone, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Password, new { @class = "text-white" })
+                            @Html.TextBoxFor(m => m.Password, new { @class = "form-control", type = "password" })
+                            @Html.ValidationMessageFor(m => m.Password, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "text-white" })
+                            @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "form-control", type = "password" })
+                            @Html.ValidationMessageFor(m => m.ConfirmPassword, null, new { @class = "text-danger" })
+                        </div>
+                        <input type="submit" name="regsubmit" class="btn btn-success mt-2">
+                    </div>
+                    <p style="font-size:20px;color:white;">Hesabınız Var?<a style="color:red;" href="/Account/Login">Giriş Edin</a></p>
+                </form>
+
+            </div>
+        </div>
+
+    </section>
+
+    <script src="~/Public/js/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>

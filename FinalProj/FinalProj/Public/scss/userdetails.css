@@ -1,0 +1,12 @@
+#homedetail .modbuttons {
+  text-align: right;
+}
+
+#homedetail .modbuttons a {
+  text-decoration: none;
+}
+
+#homedetail .modbuttons a i {
+  font-size: 25px;
+}
+/*# sourceMappingURL=userdetails.css.map */

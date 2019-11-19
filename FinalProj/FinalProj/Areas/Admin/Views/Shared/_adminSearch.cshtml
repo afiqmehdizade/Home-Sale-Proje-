@@ -1,0 +1,40 @@
+﻿@model IEnumerable<FinalProj.Models.User>
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<table class="table table-bordered table-striped ">
+    <thead class="bg-info">
+        <tr>
+            <th style="color:black;vertical-align:middle;text-align:center">@Html.DisplayNameFor(m => m.Firstname)</th>
+            <th style="color:black;vertical-align:middle;text-align:center">@Html.DisplayNameFor(m => m.Lastname)</th>
+            <th style="color:black;vertical-align:middle;text-align:center">@Html.DisplayNameFor(m => m.Phone)</th>
+            <th style="color:black;vertical-align:middle;text-align:center">@Html.DisplayNameFor(m => m.Email)</th>
+            <th style="color:black;vertical-align:middle;text-align:center">@Html.DisplayNameFor(m => m.Status)</th>
+            <th style="color:black;vertical-align:middle;text-align:center">Elanları</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="color:black;vertical-align:middle;text-align:center">@item.Firstname </td>
+                <td style="color:black;vertical-align:middle;text-align:center">@item.Lastname</td>
+                <td style="color:black;vertical-align:middle;text-align:center">@item.Phone</td>
+                <td style="color:black;vertical-align:middle;text-align:center">@item.Email</td>
+                <td style="color:black;vertical-align:middle;text-align:center">@item.Status</td>
+                <td style="color:black;vertical-align:middle;text-align:center">
+                    <a id="advsee" href="@Url.Action("useradv","Users",new { id = item.Id })" class="btn btn-warning">
+                        <i class="fas fa-eye"></i> Elanları
+                    </a>
+                </td>
+
+            </tr>
+        }
+
+
+    </tbody>
+</table>
+

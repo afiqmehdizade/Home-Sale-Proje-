@@ -1,0 +1,65 @@
+﻿@model FinalProj.Areas.Admin.ViewModel.adminLogin
+@{
+    Layout = null;
+}
+
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Visitors an Admin Panel Category Bootstrap Responsive Website Template | Login :: w3layouts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- bootstrap-css -->
+    <link rel="stylesheet" href="~/Areas/Admin/Public/css/bootstrap.min.css">
+    <!-- //bootstrap-css -->
+    <!-- Custom CSS -->
+    <link href="~/Areas/Admin/Public/css/style.css" rel='stylesheet' type='text/css' />
+    <link href="~/Areas/Admin/Public/css/style-responsive.css" rel="stylesheet" />
+    <!-- font CSS -->
+    <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <!-- font-awesome icons -->
+    <link rel="stylesheet" href="~/Areas/Admin/Public/css/font.css" type="text/css" />
+    <link href="~/Areas/Admin/Public/css/font-awesome.css" rel="stylesheet">
+    <!-- //font-awesome icons -->
+    <script  src="~/Areas/Admin/Public/js/jquery2.0.3.min.js"></script>
+</head>
+<body>
+    <div class="log-w3">
+        <div class="w3layouts-main">
+            <h2>Admin Panel</h2>
+            <form action="#" method="post">
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email, new { style = "color:white;" })
+                    @Html.TextBoxFor(m => m.Email, new { @class = "ggg", placeholder = "Email", required = "Emaili Daxil Edin" })
+                    @Html.ValidationMessageFor(m => m.Email, null, new { @class = "text-danger", })
+                </div>
+                <div class="form-group">
+                    </br>
+                    @Html.LabelFor(m => m.Password, new { style = "color:white;" })
+                    @Html.TextBoxFor(m => m.Password, new { @class = "ggg", placeholder = "Parol", required = "Parolu Daxil Edin" ,type="password"})
+                    @Html.ValidationMessageFor(m => m.Password, null, new { @class = "text-danger" })
+                </div>
+                @Html.ValidationMessage("loginError")
+                @*<div class="clearfix"></div>*@
+                <input type="submit" value="Daxil Ol" name="login">
+            </form>
+        </div>
+    </div>
+
+    <script src="~/Areas/Admin/Public/js/bootstrap.js"></script>
+    <script src="~/Areas/Admin/Public/js/scripts.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>
+

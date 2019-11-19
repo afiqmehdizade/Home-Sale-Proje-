@@ -1,0 +1,121 @@
+﻿@model FinalProj.Models.Advert
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="homedetail">
+    <div class="homedetail my-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="wrapper">
+                        <img src="~/Images/@Model.Image" alt="">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="overview">
+                        <div class="modbuttons">
+                            <a href="@Url.Action("Edit","Advert",new { id = Model.Id })"><i class="btn btn-warning fas fa-edit"></i></a>
+                            <a href="#" data-toggle="modal" data-target="#exampleModalCenter"><i class="btn btn-danger  fas fa-trash"></i></a>
+                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">  <span style="color:red">@Model.City.CityName</span> şəhərindən olan elanı silmək istəyirsiniz?</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            "Bu elanı silsəniz bir daha bərpa edə bilməyəcəksiniz"
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-success" data-dismiss="modal">Imtina</button>
+                                            <button type="button" id="deladv" data-id="@Model.Id" class="btn btn-danger">Sil</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h4>
+                            Ümumi Melumat
+                            <hr>
+                        </h4>
+
+                        <div class="d-flex">
+                            <p class="first-p">Qiyməti:</p>
+                            <p class="second-p">@Model.Price <SUP>₼</SUP> </p>
+                        </div>
+                        <div class="d-flex">
+                            <p class="first-p">Yataq Otağı:</p>
+                            <p class="second-p">@Model.BedRoom</p>
+                        </div>
+                        <div class="d-flex">
+                            <p class="first-p">Hamam Otağı:</p>
+                            <p class="second-p">@Model.BathRoom</p>
+                        </div>
+                        <div class="d-flex">
+                            <p class="first-p">Sahəsi:</p>
+                            <p class="second-p">@Model.RoomArea m <sup>2</sup></p>
+                        </div>
+                        <div class="d-flex">
+                            <p class="first-p">Növü:</p>
+                            <p class="second-p">@Model.RentType.SaleType</p>
+                        </div>
+                        <div class="d-flex">
+                            <p class="first-p">Adresi:</p>
+                            <p class="second-p">@Model.City.CityName,@Model.Address </p>
+                        </div>
+
+                    </div>
+                    <div class="description">
+                        <h4>
+                            Haqqında Melumat
+                            <hr>
+                        </h4>
+                        <p class="descrip">
+                            @Model.Description
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts{
+    <script>
+        $(function () {
+            $(document).on("click", "#deladv", function () {
+               var delid = $("#deladv").attr("data-id")
+                $.ajax({
+                    url: "/AJAX/DeleteAdvert",
+                    data: { deleteid: delid },
+                    type:"GET",
+                    success: function (res) {
+                        if (res.status === "400") {
+                            swal({
+                                title: "Xəta",
+                                text: "Elanı silmə uğursuz oldu.Düzgün məlumat daxil etdiyinizdən əmin olun!",
+                                icon: "error",
+                                button: "Ok",
+                            });
+                        } else {
+                            swal("Uğurlu", "Elan Uğurla silindi", "success")
+                                .then(willRedirect => {
+                                    if (willRedirect) {
+                                        window.location.href = res.data;
+                                    }
+                                })
+                        }
+                    }
+                })
+
+            })
+        })
+
+    </script>
+}
+

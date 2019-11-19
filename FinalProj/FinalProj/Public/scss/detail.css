@@ -1,0 +1,39 @@
+#homedetail .homedetail {
+  margin: 10px;
+}
+
+#homedetail .homedetail p {
+  margin-bottom: 0.5rem;
+}
+
+#homedetail .homedetail .wrapper {
+  height: 100%;
+  width: 100%;
+}
+
+#homedetail .homedetail .wrapper img {
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+#homedetail .homedetail .overview .first-p {
+  font-weight: 700;
+  font-size: 17px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#homedetail .homedetail .overview .second-p {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 10px;
+  font-size:19px;
+}
+
+#homedetail .homedetail .description p {
+  font-size: 20px;
+}
+
+#homedetail .homedetail img {
+  height: 100%;
+  width: 100%;
+}
+/*# sourceMappingURL=detail.css.map */

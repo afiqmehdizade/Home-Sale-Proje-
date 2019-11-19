@@ -1,0 +1,121 @@
+﻿@model IEnumerable<FinalProj.Models.Advert>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayouteAdmin.cshtml";
+}
+
+<table class="table table-bordered table-striped ">
+    <thead class="bg-info">
+        <tr>
+            <th style="color:black;vertical-align:middle;text-align:center">@Html.DisplayNameFor(m => m.UserId)</th>
+            <th style="color:black;vertical-align:middle;text-align:center">@Html.DisplayNameFor(m => m.CreatedAt)</th>
+            <th style="color:black;vertical-align:middle;text-align:center">@Html.DisplayNameFor(m => m.RoomArea)</th>
+            <th style="color:black;vertical-align:middle;text-align:center">@Html.DisplayNameFor(m => m.RoomCount)</th>
+            <th style="color:black;vertical-align:middle;text-align:center">@Html.DisplayNameFor(m => m.BathRoom)</th>
+            <th style="color:black;vertical-align:middle;text-align:center">@Html.DisplayNameFor(m => m.Address)</th>
+            <th style="color:black;vertical-align:middle;text-align:center">@Html.DisplayNameFor(m => m.IsVip)</th>
+            <th style="color:black;vertical-align:middle;text-align:center">@Html.DisplayNameFor(m => m.IsNew)</th>
+            <th style="color:black;vertical-align:middle;text-align:center">@Html.DisplayNameFor(m => m.CityId)</th>
+            <th style="color:black;vertical-align:middle;text-align:center">@Html.DisplayNameFor(m => m.Description)</th>
+            <th style="color:black;vertical-align:middle;text-align:center">@Html.DisplayNameFor(m => m.Photo)</th>
+            <th style="color:black;vertical-align:middle;text-align:center">Dəyişiklik</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="color:black;vertical-align:middle;text-align:center">@item.User.Firstname @item.User.Lastname</td>
+                <td style="color:black;vertical-align:middle;text-align:center">@item.CreatedAt</td>
+                <td style="color:black;vertical-align:middle;text-align:center">@item.RoomArea</td>
+                <td style="color:black;vertical-align:middle;text-align:center">@item.RoomCount</td>
+                <td style="color:black;vertical-align:middle;text-align:center">@item.BathRoom</td>
+                <td style="color:black;vertical-align:middle;text-align:center">@item.Address</td>
+                <td style="color:black;vertical-align:middle;text-align:center">@item.IsVip</td>
+                <td style="color:black;vertical-align:middle;text-align:center">@item.IsNew</td>
+                <td style="color:black;vertical-align:middle;text-align:center">@item.City.CityName</td>
+                <td style="color:black;vertical-align:middle;text-align:center">@item.Description</td>
+
+                <td style="vertical-align: middle; text-align: center;">
+                    <img width="150" class="img-rounded" src="~/Images/@item.Image" />
+                </td>
+                <td style="vertical-align: middle; text-align: center;">
+
+                    <a id="loopid" data-toggle="modal" data-target="#exampleModalCenter" data-id="@item.Id" data-cityname="@item.City.CityName" title="Delete Advert" class="btn btn-danger">
+                        <i class="fas fa-trash"></i> Sil
+                    </a>
+
+                </td>
+            </tr>
+        }
+
+
+    </tbody>
+</table>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">  <span id="cty" style="color:red"></span> şəhərindən olan elanı silmək istəyirsiniz?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                "Bu elanı silsəniz bir daha bərpa edə bilməyəcəksiniz"
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Imtina</button>
+                <button type="button" id="deladv1" data-id="" class="btn btn-danger">Sil</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+    $(function() {
+        $(document).on("click", "#loopid", function () {
+            var dataid = $(this).data("id")
+
+            var datacity = $(this).data("cityname")
+
+            if (dataid || datacity)
+            {
+                $("#deladv1").attr("data-id", dataid)
+                $("#cty").html(datacity)
+            }
+        })
+        $(document).on("click", "#deladv1", function () {
+            var delid = ($(this).attr("data-id"))
+            if (delid) {
+                $.ajax({
+                    url: "/Admin/AJAX/Admindelete",
+                    data: { deleteadv: delid },
+                    type: "GET",
+                    success: function (res) {
+                        console.log(res)
+                        if (res.status === "400") {
+                            swal({
+                                title: "Xəta",
+                                text: "Elanı silmə uğursuz oldu.Düzgün məlumat daxil etdiyinizdən əmin olun!",
+                                icon: "error",
+                                button: "Ok",
+                            });
+                        } else {
+                            swal("Uğurlu", "Elan Uğurla silindi", "success")
+                                .then(willRedirect => {
+                                    if (willRedirect) {
+                                        window.location.href = res.data;
+                                    }
+                                })
+                        }
+                    }
+                })
+            }
+        })
+    })
+    </script>
+}

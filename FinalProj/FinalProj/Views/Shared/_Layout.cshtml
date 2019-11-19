@@ -1,0 +1,388 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
+    <link rel="stylesheet" href="~/Public/js/OwlCarousel2-2.3.4/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Public/js/OwlCarousel2-2.3.4/owl.theme.default.css">
+    <link rel="stylesheet" href="~/Public/scss/style.css">
+    <title>Index</title>
+</head>
+
+<body>
+    <header>
+        <section class="position-static" id="secnavbar">
+            <div class="main">
+                <nav class="navbar navbar-expand-lg navbar-light bg-success">
+                    <a class="navbar-brand" href="/Home/Index">HomeSale</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto navbarlist">
+                            <li class="nav-item active navbarli">
+                                <a class="nav-link" href="/Advert/Sale">Satılıq <span class="sr-only">(current)</span></a>
+
+                            </li>
+                            <li class="nav-item navbarli">
+                                <a class="nav-link" href="/Advert/Rent">Kirayə</a>
+                            </li>
+                            <li class="nav-item navbarli">
+                                <a class="nav-link" href="/Home/About">Haqqımızda</a>
+                            </li>
+                            <li class="nav-item navbarli">
+                                <a class="nav-link" >info.homesale@code.az</a>
+                            </li>
+
+                        </ul>
+                        @{
+                            if (Session["lguser"] != null)
+                            {
+                               FinalProj.Models.User user = Session["lguser"] as FinalProj.Models.User;
+                                int? userlike = Session["userlike"] as int?;
+                                <div class="form-inline my-2 my-lg-0">
+                                    <a href="/Advert/Create" class="btn btn-common"><i class="fas fa-plus-square"></i> Elan Yerləşdir</a>
+                                </div>
+                                <a  href="@Url.Action("Liked","User",new { id = user.Id })" class="btn btn-success">
+                                    <i style="font-size:20px;" class="fas fa-thumbs-up"></i> <span data-id="@userlike" style="font-size:20px;" class="userlikespan badge badge-warning"> @userlike </span>
+                                </a>
+                                <ul id="userul" class=" nav pull-right top-menu">
+                                    <li class="dropdown">
+                                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                            <span style="font-size:25px;color: white;" class="username">@user.Firstname</span>
+                                            <b class="caret"></b>
+                                        </a>
+                                        <ul class="dropdown-menu extended logout">
+                                            <li><a href="@Url.Action("Index","User")">Şəxsi Kabinet</a></li>
+                                            <li class="my-1"><a href="@Url.Action("Privacy","User",new { id = user.Id })">Ayarlar</a></li>
+                                            <li><a href="@Url.Action("Logout","Account")">Çıxış</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            }
+                            else
+                            {
+                                <div class="form-inline my-2 my-lg-0">
+                                    <a href="/Advert/Create" class="btn btn-common"><i class="fas fa-plus-square"></i> Elan Yerləşdir</a>
+                                    <a href="/Account/Login" class="forhover">Login</a>
+                                    <a href="/Account/Registration" class="forhover">Registration</a>
+                                </div>
+                            }
+                        }
+
+                    </div>
+                </nav>
+            </div>
+        </section>
+
+    </header>
+
+    @RenderBody()
+
+    <footer>
+        <section id="contact">
+            <div class="container">
+                <section class="mb-4">
+                    <h2 class="h1-responsive font-weight-bold text-center my-4">Sualınız Var?</h2>
+                    <div class="row">
+                        <div class="col-md-9 mb-md-0 mb-5">
+
+                            <form action="@Url.Action("lform","Home")" id="contact-form" name="contact-form" method="POST">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="md-form mb-0">
+                                            <label for="name" class="">Ad</label>
+                                            <input type="text" id="name" name="Name" class="form-control" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="md-form mb-0">
+                                            <label for="email" class="">Email</label>
+                                            <input type="email" id="email" name="Email" class="form-control" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="md-form mb-0">
+                                            <label for="subject" class="">Başlıq</label>
+                                            <input type="text" id="subject" name="Title" class="form-control" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="md-form">
+                                            <label for="message">Mesaj</label>
+                                            <textarea type="text" id="message" name="Content" rows="2"
+                                                      class="form-control md-textarea" required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <div class="text-center text-md-left mt-2">
+                                <a class="sss btn btn-primary">Göndər</a>
+                            </div>
+                            <div class="status"></div>
+                        </div>
+
+                        <div class="col-md-3 text-center">
+                            <ul class="list-unstyled mb-0">
+                                <li>
+                                    <i class="fas fa-map-marker-alt fa-2x"></i>
+                                    <p>AAF Business,CodeAcademy, AZ</p>
+                                </li>
+
+                                <li>
+                                    <i class="fas fa-phone mt-4 fa-2x"></i>
+                                    <p>+994 51 509 05 15</p>
+                                </li>
+
+                                <li>
+                                    <i class="fas fa-envelope mt-4 fa-2x"></i>
+                                    <p>afignm@code.edu.az</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+        <section id="social">
+            <div class="container">
+                <div class="row uls">
+                    <div class="col-md-6 col-12">
+                        <div class="row">
+                            <div class="col-md-6 col-6">
+                                <ul class="text-center">
+                                    <h4>Proyektlər</h4>
+                                    <li><a href="#">Yeni tikililər</a></li>
+                                    <li><a href="#">Yeni tikililər</a></li>
+                                    <li><a href="#">Yeni tikililər</a></li>
+                                    <li><a href="#">Yeni tikililər</a></li>
+                                    <li><a href="#">Yeni tikililər</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 col-6">
+                                <ul class="text-center">
+                                    <h4>Tikililər</h4>
+                                    <li><a href="#">Yeni tikililər</a></li>
+                                    <li><a href="#">Yeni tikililər</a></li>
+                                    <li><a href="#">Yeni tikililər</a></li>
+                                    <li><a href="#">Yeni tikililər</a></li>
+                                    <li><a href="#">Yeni tikililər</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="row">
+                            <div class="col-md-6 col-6">
+                                <ul class="text-center">
+                                    <h4>İpoteka</h4>
+                                    <li><a href="#">Yeni tikililər</a></li>
+                                    <li><a href="#">Yeni tikililər</a></li>
+                                    <li><a href="#">Yeni tikililər</a></li>
+                                    <li><a href="#">Yeni tikililər</a></li>
+                                    <li><a href="#">Yeni tikililər</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 col-6">
+                                <ul class="text-center">
+                                    <h4>İş Şərtləri</h4>
+                                    <li><a href="#">Yeni tikililər</a></li>
+                                    <li><a href="#">Yeni tikililər</a></li>
+                                    <li><a href="#">Yeni tikililər</a></li>
+                                    <li><a href="#">Yeni tikililər</a></li>
+                                    <li><a href="#">Yeni tikililər</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+                <div class="col-12">
+                    <ul class="socialul">
+                        <li>
+                            <a href="instagram.com/afiqmedhizade"><i class="fab fa-instagram"></i></a>
+                        </li>
+                        <li>
+                            <a href="fb.com/afiqmedhizade"><i class="fab fa-facebook"></i></a>
+                        </li>
+                        <li>
+                            <a href="twitter.com/afiqmedhizade"><i class="fab fa-twitter"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="pb-4 text-center">
+                    <h5>Bütün hüquqlar qorunur</h5>
+                </div>
+            </div>
+
+        </section>
+    </footer>
+    <!-- <script src="jquery.min.js"></script> -->
+    <script src="~/Public/js/jquery-3.3.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script src="~/Public/js/OwlCarousel2-2.3.4/dist/owl.carousel.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/Public/js/main.js"></script>
+    <script>
+        $(function () {
+
+            $(document).on("click", ".sss", function () {
+                var name = $("#name").val();
+                var email = $("#email").val();
+                var title = $("#subject").val();
+                var message = $("#message").val();
+
+                if (!name || !email || !title || !message) {
+
+                    swal({
+                        title: "Xəta",
+                        text: "Bütün Məlumatlar Doldurulmalıdır",
+                        icon: "error",
+                        button: "Ok",
+                    });
+                    return;
+                }
+
+                if (name && email && title && message) {
+
+                    $.ajax({
+                        url: "/Home/lform",
+                        data: { Name: name, Email: email, Title: title, Content: message },
+                        type: "POST",
+                        success: function (res) {
+                            if (res.status === "400") {
+                                swal({
+                                    title: "Xəta",
+                                    text: res.messag,
+                                    icon: "error",
+                                    button: "Ok",
+                                });
+                            } else {
+                                swal("Uğurlu", "Mesajınız Uğurla Göndərildi.", "success")
+                                    .then(willRedirect => {
+                                        if (willRedirect) {
+                                            window.location.href = res.data;
+                                        }
+                                    })
+                            }
+                        }
+                    })
+
+                }
+
+            })
+        })
+    </script>
+    <script>
+        $(function () {
+
+            $(document).on("click", ".fa-heart", function (e) {
+                e.preventDefault()
+                var userlike = $(this).attr("data-id");
+                var userlcount = $(".userlikespan").attr("data-id")
+                if (userlike) {
+                    $.ajax({
+                        url: "/LikeAdvert/Index",
+                        data: { likeid: userlike },
+                        type: "POST",
+                        success: function (res) {
+                            if (res.length >= 1500) {
+                                window.location.href = "/Account/Login"
+                                return;
+                            }
+                            if (res.status == "400") {
+                                swal({
+                                    title: "Xəta",
+                                    text: "Bu Elan Bəyənilib!",
+                                    icon: "error",
+                                    button: "Ok",
+                                });
+                            }
+                            else {
+                                var resultarr = $("[data-id='" + userlike + "']");
+                                userlcount++
+                                $(".userlikespan").attr("data-id",userlcount)
+                                $(".userlikespan").html(userlcount)
+                                jQuery.each(resultarr, function (i, val) {
+                                    val.classList.remove("far")
+                                    val.classList.remove("fa-heart")
+                                    val.classList.add("fas")
+                                    val.classList.add("fa-thumbs-down")
+                                })
+                            }
+
+                        }
+                    })
+                }
+            })
+
+
+            $(document).on("click", ".fa-thumbs-down", function (e) {
+                e.preventDefault()
+                var userdislike = $(this).attr("data-id");
+                var userlcount = $(".userlikespan").attr("data-id")
+                if (userdislike) {
+                    $.ajax({
+                        url: "/LikeAdvert/Dislike",
+                        data: { dislikeid: userdislike },
+                        type: "POST",
+                        success: function (res) {
+                            if (res.status == "400") {
+                                swal({
+                                    title: "Xəta",
+                                    text: "Məlumatı Dəyişməyin!",
+                                    icon: "error",
+                                    button: "Ok",
+                                });
+                            }
+                            else {
+                                var resultdislike = $("[data-id='" + userdislike + "']");
+                                userlcount--
+                                $(".userlikespan").attr("data-id", userlcount)
+                                $(".userlikespan").html(userlcount)
+                                jQuery.each(resultdislike, function (i, val) {
+                                    console.log(val);
+                                    val.classList.remove("fas")
+                                    val.classList.remove("fa-thumbs-down")
+                                    val.classList.add("far")
+                                    val.classList.add("fa-heart")
+                                })
+                            }
+
+                        }
+                    })
+                }
+            })
+        })
+    </script>
+    @RenderSection("scripts", false)
+</body>
+
+</html>

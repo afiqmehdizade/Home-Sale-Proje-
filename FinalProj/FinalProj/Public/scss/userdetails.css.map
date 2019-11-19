@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAEI,WAFO,CAEP,WAAW,CAAC;EACR,UAAU,EAAE,KAAK;CASpB;;AAZL,AAIQ,WAJG,CAEP,WAAW,CAEP,CAAC,CAAA;EACG,eAAe,EAAE,IAAI;CAKxB;;AAVT,AAMY,WAND,CAEP,WAAW,CAEP,CAAC,CAEG,CAAC,CAAA;EACG,SAAS,EAAE,IAAI;CAElB",
+    "sources": [
+        "userdetails.scss"
+    ],
+    "names": [],
+    "file": "userdetails.css"
+}

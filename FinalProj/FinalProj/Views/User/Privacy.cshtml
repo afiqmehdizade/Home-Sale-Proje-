@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "Privacy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="col-md-6 offset-md-3 pt-5">
+        <form id="cngform" method="POST">
+            <div class="form-group">
+                <label for="oldpas">Köhnə şifrə</label>
+                <input name="oldpass" type="password" class="form-control" id="oldpas" aria-describedby="emailHelp"
+                       placeholder="Köhnə şifrəni yazın..." required />
+            </div>
+            <div class="form-group">
+                <label for="Newpassword">Yeni şifrə</label>
+                <input name="newpass" type="password" class="form-control" id="Newpassword" aria-describedby="emailHelp"
+                       placeholder="Yeni şifrəni yazın..." required />
+            </div>
+            <div class="form-group">
+                <label for="ConfirmNewpassword">Təkrar Yeni şifrə</label>
+                <input name="confpass" type="password" class="form-control" id="ConfirmNewpassword" aria-describedby="emailHelp"
+                       placeholder="Təkrar Yeni şifrəni yazın..." required />
+            </div>
+            <input style="display:block; cursor:pointer;" id="btnsbm" class="btn btn-primary" name="chngpassword" value="Yadda saxla" />
+        </form>
+        <form method="post">
+            <div class="accblock mt-3">
+                <h6>Hesabınızı bağlamaq istəyirsinizsə <input type="button" id="buttonblock" class="btn btn-danger btn-sm" value="Hesabımı bağla" /> click edin</h6>
+                <p>
+                    QEYD:Hesabınızı bağlasanız sizə aid bütün elanlar elanlar siyahısından
+                    çıxarılacaq və siz yenidən giriş etdiyinizdə elanlar təkrar aktiv olacaq...
+                </p>
+                <label class="blockaccount" for="blockaccount">Şifrənizi daxil edin*</label>
+                <input style="cursor:pointer;" type="password" name="accblock" class="form-control blockaccount" id="Confirmblock"
+                       placeholder="Şifrənizi yazın" required />
+                <input style="display:block;cursor:pointer;" id="btnblck" class="btn btn-warning btn-sm mt-2 blockaccount" name="blockaccount" value="Yadda Saxla" />
+            </div>
+        </form>
+    </div>
+
+</div>
+
+@section scripts{
+    <script>
+        $(function () {
+            $(document).on("click", "#btnsbm", function () {
+                var oldpas = $("#oldpas").val();
+                var newpas = $("#Newpassword").val();
+                var confnewpas = $("#ConfirmNewpassword").val();
+                $.ajax({
+                    url: "/User/Privacy",
+                    method: "POST",
+                    data: { oldpass: oldpas, newpass: newpas, confpass: confnewpas },
+                    success: function (res) {
+                        if (res.statuscode === "400") {
+                            swal({
+                                title: "Xəta",
+                                text: res.errormessage,
+                                icon: "error",
+                                button: "Ok",
+                            });
+                        } else {
+                            swal("Uğurlu", "Parol uğurla dəyişdirildi", "success")
+                                .then(willRedirect => {
+                                    if (willRedirect) {
+                                        window.location.href = res.data;
+                                    }
+                                })
+                        }
+                    }
+                })
+            })
+
+            $(document).on("click", "#btnblck", function () {
+                var blockpass = $("#Confirmblock").val();
+
+                if (blockpass) {
+                    $.ajax({
+                        url: "/User/Privacy",
+                        method: "POST",
+                        data: { accblock: blockpass },
+                        success: function (res) {
+                            if (res.statuscode === "400") {
+                                swal({
+                                    title: "Xəta",
+                                    text: res.errormessage,
+                                    icon: "error",
+                                    button: "Ok",
+                                });
+                            } else {
+                                swal("Uğurlu", "Hesaınız uğurla bağlandı", "success")
+                                    .then(willRedirect => {
+                                        if (willRedirect) {
+                                            window.location.href = res.data;
+                                        }
+                                    })
+                            }
+                        }
+                    })
+                }
+            })
+        })
+
+    </script>
+
+}

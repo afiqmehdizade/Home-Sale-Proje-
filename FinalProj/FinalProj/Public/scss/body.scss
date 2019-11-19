@@ -1,0 +1,117 @@
+#newhomes, #userpage, #reqproduct {
+    a {
+        text-decoration: none;
+        color: black;
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+
+    .owl-prev, .owl-next {
+        font-size: 40px;
+    }
+
+    .owl-theme .owl-nav [class*='owl-']:hover {
+        background: transparent;
+        color: rgb(0, 0, 0);
+        text-decoration: none;
+        transform: scale(1.5);
+        transition: all 0.5s ease;
+    }
+
+    .owl-item {
+        width: 350px;
+        margin-right: 50px;
+    }
+
+    .owl-theme .owl-nav [class*='owl-']:focus {
+        outline: none;
+    }
+
+    .owl-theme .owl-nav {
+        margin-top: 0px;
+    }
+
+    .card {
+        overflow: hidden;
+        font-family: 'Source Sans Pro', sans-serif;
+        position: relative;
+
+        .new {
+            position: absolute;
+            width: 70px;
+            text-align: center;
+            right: 0;
+            top: 1%;
+            border-radius: 16px 0px 0;
+            background-color: rgb(73, 153, 153);
+
+            h4 {
+                font-style: italic;
+                color: white;
+            }
+        }
+
+        .vip {
+            position: absolute;
+            top: 1%;
+
+            i {
+                color: gold;
+                font-size: 30px;
+            }
+        }
+
+        .forimage {
+            overflow: hidden;
+        }
+
+        img {
+            transition: all 0.5s ease-in-out;
+        }
+
+        :hover {
+            img {
+                transform: scale(1.1);
+                transition: all 0.5s ease-in-out;
+            }
+        }
+
+        .card-body {
+            padding: 0.5rem;
+
+            i {
+                color: silver;
+            }
+
+            p {
+                margin: 0;
+            }
+
+            span {
+                margin-right: 10px;
+            }
+        }
+
+        .liked {
+            i {
+                color: silver;
+            }
+
+            width: 95%;
+            text-align: right;
+            font-size: 30px;
+            position: absolute;
+            bottom: 26%;
+            right: 2%,
+        }
+    }
+
+    .titlecorusel {
+        margin: 10px 0;
+
+        h3 {
+            font-size: 25px;
+            font-style: italic;
+            margin-left: 20px;
+        }
+    }
+}

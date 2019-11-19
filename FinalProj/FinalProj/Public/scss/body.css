@@ -1,0 +1,181 @@
+#newhomes a, #userpage a, #reqproduct a {
+    text-decoration: none;
+    color: black;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#newhomes .owl-prev, #newhomes .owl-next, #userpage .owl-prev, #userpage .owl-next, #reqproduct .owl-prev, #reqproduct .owl-next {
+    font-size: 40px;
+}
+
+#newhomes .owl-theme .owl-nav [class*='owl-']:hover, #userpage .owl-theme .owl-nav [class*='owl-']:hover, #reqproduct .owl-theme .owl-nav [class*='owl-']:hover {
+    background: transparent;
+    color: black;
+    text-decoration: none;
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#newhomes .owl-theme .owl-nav [class*='owl-']:focus, #userpage .owl-theme .owl-nav [class*='owl-']:focus, #reqproduct .owl-theme .owl-nav [class*='owl-']:focus {
+    outline: none;
+}
+
+#newhomes .owl-theme .owl-nav, #userpage .owl-theme .owl-nav, #reqproduct .owl-theme .owl-nav {
+    margin-top: 0px;
+}
+
+#newhomes .owl-item, #userpage .owl-item, #reqproduct .owl-item {
+    width: 350px;
+    margin-right: 50px;
+}
+
+#newhomes .card, #userpage .card, #reqproduct .card {
+    overflow: hidden;
+    font-family: 'Source Sans Pro', sans-serif;
+    position: relative;
+}
+
+    #newhomes .card .new, #userpage .card .new, #reqproduct .card .new {
+        position: absolute;
+        width: 70px;
+        text-align: center;
+        right: 0;
+        top: 1%;
+        border-radius: 16px 0px 0;
+        background-color: #499999;
+    }
+
+        #newhomes .card .new h4, #userpage .card .new h4, #reqproduct .card .new h4 {
+            font-style: italic;
+            color: white;
+        }
+
+    #newhomes .card .vip, #userpage .card .vip, #reqproduct .card .vip {
+        position: absolute;
+        top: 1%;
+    }
+
+        #newhomes .card .vip i, #userpage .card .vip i, #reqproduct .card .vip i {
+            color: gold;
+            font-size: 30px;
+        }
+
+    #newhomes .card .forimage, #userpage .card .forimage, #reqproduct .card .forimage {
+        overflow: hidden;
+        width: 378px !important;
+        height: 219.89px !important;
+    }
+
+    #newhomes .card img, #userpage .card img, #reqproduct .card img {
+        -webkit-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
+    }
+
+    #newhomes .card :hover img, #userpage .card :hover img, #reqproduct .card :hover img {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+        -webkit-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
+    }
+
+    #newhomes .card .card-body, #userpage .card .card-body, #reqproduct .card .card-body {
+        padding: 0.5rem 0.2rem;
+    }
+
+        #newhomes .card .card-body i, #userpage .card .card-body i, #reqproduct .card .card-body i {
+            color: silver;
+        }
+
+        #newhomes .card .card-body p, #userpage .card .card-body p, #reqproduct .card .card-body p {
+            margin: 0;
+        }
+
+        #newhomes .card .card-body span, #userpage .card .card-body span, #reqproduct .card .card-body span {
+            margin-right: 10px;
+        }
+
+    #newhomes .card .liked, #userpage .card .liked, #reqproduct .card .liked {
+        width: 95%;
+        text-align: right;
+        font-size: 23px;
+        position: absolute;
+        bottom: 26%;
+        right: 2%;
+    }
+
+        #newhomes .card .liked i, #userpage .card .liked i, #reqproduct .card .liked i {
+            color: silver;
+        }
+
+#newhomes .titlecorusel, #userpage .titlecorusel, #reqproduct .titlecorusel {
+    margin: 10px 0;
+}
+
+    #newhomes .titlecorusel h3, #userpage .titlecorusel h3, #reqproduct .titlecorusel h3 {
+        font-size: 25px;
+        font-style: italic;
+        margin-left: 20px;
+    }
+
+#createadv {
+    color: #fff;
+    background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+    background-size: 400% 400%;
+    -webkit-animation: Gradient 15s ease infinite;
+    -moz-animation: Gradient 15s ease infinite;
+    animation: Gradient 15s ease infinite;
+}
+
+@-webkit-keyframes Gradient {
+    0% {
+        background-position: 0% 50%
+    }
+
+    50% {
+        background-position: 100% 50%
+    }
+
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+@-moz-keyframes Gradient {
+    0% {
+        background-position: 0% 50%
+    }
+
+    50% {
+        background-position: 100% 50%
+    }
+
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+@keyframes Gradient {
+    0% {
+        background-position: 0% 50%
+    }
+
+    50% {
+        background-position: 100% 50%
+    }
+
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+
+
+/*# sourceMappingURL=body.css.map */

@@ -1,0 +1,42 @@
+#homedetail {
+    .homedetail {
+        margin: 10px;
+        p {
+            margin-bottom: 0.5rem;
+        }
+
+        .wrapper {
+            height: 100%;
+            width: 100%;
+
+            img {
+                object-fit: contain;
+            }
+
+        }
+
+        .overview {
+            .first-p {
+                font-weight: 700;
+                font-size: 17px;
+                font-family: Georgia, 'Times New Roman', Times, serif;
+            }
+
+            .second-p {
+                font-family: Arial, Helvetica, sans-serif;
+                margin-left: 10px;
+            }
+        }
+
+        .description{
+            p{
+                font-size: 20px;
+            }
+        }
+
+        img {
+            height: 100%;
+            width: 100%;
+        }
+    }
+}
